@@ -26,6 +26,7 @@ button.icon-button {
   justify-content: center;
   align-items: flex-start;
   flex-flow: column;
+  position: relative;
 
   &>header {
     width: 100%;

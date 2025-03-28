@@ -20,6 +20,12 @@ export default class User {
     this.displayName = displayName;
   };
 
+  /** @param isLogon ログオン済み */
+  get isLogon() {
+    return this.UID > 0;
+  }
+
+  /** @param isDummy ダミーユーザ */
   static get dummy() {
     return new User(-1, '', 'Nobody');
   }

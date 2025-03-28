@@ -2,6 +2,7 @@ import React from "react";
 import Application from "#/Core/Application";
 import Icon from "#/Components/Icon";
 import IconBtn from "#/Components/IconBtn";
+import Modal from "#/Components/Modal/Modal";
 import '#/SCSS/user-interface.scss';
 
 
@@ -22,6 +23,13 @@ export default class UserInterface extends React.Component<Props, State> {
   componentDidMount(): void {
     const app = this.props.app;
     app.components.ui = this;
+
+    // ログオンしていない場合 ログオンパネルを表示
+    if (!app.user.isLogon) {
+      app.components.modal!.showPanel(
+        Modal.Panel.LogonPanel
+      );
+    }
   }
 
   render() {
@@ -48,6 +56,9 @@ export default class UserInterface extends React.Component<Props, State> {
         </main>
 
         <footer><span>(c) Code-GN all rights received.</span></footer>
+        <Modal
+          app={app}
+          ui={this} />
       </div>
     );
   }

@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import User from "#/Models/User";
+import Modal from "#/Components/Modal/Modal";
 import UserInterface from "#/Components/UserInterface";
 
 /**
  * アプリケーション
  */
 export default class Application {
-  renderTargetSelector: string;
   components: Components;
-  user: User;
+  renderTargetSelector: string;
   title: string;
+  user: User;
 
   constructor(selector: string) {
     this.user = User.dummy;
@@ -58,4 +59,5 @@ export default class Application {
 
 type Components = {
   ui?: UserInterface;
+  modal?: Modal;
 };
