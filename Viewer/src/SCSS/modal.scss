@@ -4,6 +4,10 @@
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: row;
   background: #00000080;
 
   &.open {
@@ -21,6 +25,45 @@
   &.hidden {
     opacity: 0;
     display: none;
+  }
+}
+
+.modal {
+  margin-top: 100px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column;
+  gap: 1.5rem;
+  color: black;
+  background-color: white;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+
+  &>header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+    gap: .5em;
+
+    span {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    svg.icon {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+
+  &>footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: row;
   }
 }
 

@@ -32,6 +32,20 @@ export default class UserInterface extends React.Component<Props, State> {
     }
   }
 
+  componentDidUpdate(
+    prevProps: Readonly<Props>,
+    prevState: Readonly<State>,
+    snapshot?: any
+  ): void {
+    const app = this.props.app;
+
+    // ログオン成功で モーダル非表示
+    const modal = app.components.modal;
+    if (modal && modal.state.panel === Modal.Panel.LogonPanel) {
+      modal.showPanel();
+    }
+  }
+
   render() {
     const app = this.props.app;
     return (

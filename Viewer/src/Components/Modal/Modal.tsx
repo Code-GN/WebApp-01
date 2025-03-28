@@ -1,5 +1,6 @@
 import React from "react";
 import Application from "#/Core/Application";
+import LogonPanel from "#/Components/Modal/LogonPanel";
 import UserInterface from "#/Components/UserInterface";
 import '#/SCSS/modal.scss';
 
@@ -79,6 +80,21 @@ export default class Modal extends React.Component<Props, State> {
     }
   }
 
+  /**
+   * モーダルに表示するパネルを取得
+   * @returns 表示するパネル
+   */
+  getPanel() {
+    const app = this.props.app;
+    const panel = this.state.panel;
+    switch (panel) {
+      case Panel.LogonPanel:
+        return <LogonPanel app={app} modal={this} />;
+      default:
+        return null;
+    }
+  }
+
   render() {
     const animState = this.state.animState;
     if (animState === AnimState.Hidden) {
@@ -92,7 +108,7 @@ export default class Modal extends React.Component<Props, State> {
         id="modal-wrap"
         className={anim}
         onAnimationEnd={this.onAnimEnd.bind(this)}>
-        <div id="modal"></div>
+        {this.getPanel()}
       </div>
     );
   }
