@@ -1,0 +1,36 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/venv": true,
+    },
+    "editor.tabSize": 2,
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+    "javascript.format.semicolons": "insert",
+    "typescript.format.semicolons": "insert",
+    "[javascript]": {
+      "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+      "editor.formatOnSave": true
+    },
+    "[typescript]": {
+      "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+      "editor.formatOnSave": true
+    },
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.tabSize": 4
+    }
+  }
+}
