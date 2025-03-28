@@ -1,6 +1,7 @@
 import UserInterface from "#/Components/UserInterface";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import User from "#/Models/User";
 
 /**
  * アプリケーション
@@ -8,8 +9,10 @@ import ReactDOM from "react-dom/client";
 export default class Application {
   renderTargetSelector: string;
   components: Components;
+  user: User;
 
   constructor(selector: string) {
+    this.user = User.dummy;
     this.renderTargetSelector = selector;
     this.components = {};
     this._init();
@@ -24,6 +27,10 @@ export default class Application {
    * 初期化処理
    */
   async _init() {
+    const user = await User.logon('abc', '123');
+    if (user) {
+      this.user = user;
+    }
     this.render();
   }
 
