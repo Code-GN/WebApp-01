@@ -2,7 +2,6 @@ import React from "react";
 import Application from "#/Core/Application";
 import LogonPanel from "#/Components/Modal/LogonPanel";
 import UserInterface from "#/Components/UserInterface";
-import '#/SCSS/modal.scss';
 
 type Props = {
   app: Application;

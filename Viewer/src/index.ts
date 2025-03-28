@@ -6,7 +6,11 @@
  */
 
 import Application from './Core/Application';
-import './global.scss';
+import '#/SCSS/global.scss';
+import '#/SCSS/modal.scss';
+import '#/SCSS/page.scss';
+import '#/SCSS/user-interface.scss';
+
 
 window.addEventListener('DOMContentLoaded', () => {
   const app = new Application('#uiroot');

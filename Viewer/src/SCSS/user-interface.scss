@@ -107,6 +107,11 @@ button.typeA {
     h1 {
       font-size: 1.0rem;
       font-weight: bold;
+
+      &>span {
+        font-size: .9rem;
+        font-weight: normal;
+      }
     }
   }
 
