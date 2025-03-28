@@ -3,6 +3,7 @@ import sys
 from fastapi import FastAPI
 import uvicorn
 from config import Config as Cnf
+from database import DB
 from routes import ALL_ROUTERS
 
 

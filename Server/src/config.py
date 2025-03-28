@@ -13,6 +13,8 @@ class Config:
     HOST: str
     PORT: int
 
+    DB_URL: str
+
     @classmethod
     def init(cls):
         '''
@@ -35,6 +37,10 @@ class Config:
         # ネットワーク設定
         cls.HOST = config.get('network', 'HOST')
         cls.PORT = int(config.getint('network', 'PORT'))
+
+        # TODO:
+        # データベース設定
+        cls.DB_URL = 'sqlite:///database.sqlite3?charset=utf8'
 
         cls.is_ready = True
 
