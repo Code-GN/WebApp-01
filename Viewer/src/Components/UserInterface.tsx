@@ -9,15 +9,23 @@ import '#/SCSS/user-interface.scss';
 type Props = {
   app: Application;
 };
-type State = {};
+type State = {
+  page?: typeof Pages[keyof typeof Pages]; // TODO: keyだけで判別
+};
 
 /**
  * ユーザーインターフェース
  */
 export default class UserInterface extends React.Component<Props, State> {
+  private globalNaviItemIDPrefix: string;
+
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      page: undefined,
+    };
+
+    this.globalNaviItemIDPrefix = 'global-navi-item-';
   }
 
   componentDidMount(): void {
@@ -38,16 +46,41 @@ export default class UserInterface extends React.Component<Props, State> {
     snapshot?: any
   ): void {
     const app = this.props.app;
+    const page = this.state.page;
 
     // ログオン成功で モーダル非表示
     const modal = app.components.modal;
     if (modal && modal.state.panel === Modal.Panel.LogonPanel) {
       modal.showPanel();
+      if (!page) {
+        this.setState({ page: Pages.Dashboard });
+      }
     }
+  }
+
+  onClickGlobalMenuItem(e: React.PointerEvent<HTMLButtonElement>) {
+    const id = e.currentTarget.id;
+    const prefix = this.globalNaviItemIDPrefix;
+
+    const targetKey = id.substring(prefix.length);
+    let targetItem = undefined;
+    Object.keys(Pages).forEach(key => {
+      const menuItem = Pages[key as keyof typeof Pages];
+      if (targetKey === menuItem.name) {
+        targetItem = Pages[key as keyof typeof Pages];
+      }
+    });
+
+    if (!targetItem) {
+      throw new Error('Global menu item not found.');
+    }
+
+    this.setState({ page: targetItem });
   }
 
   render() {
     const app = this.props.app;
+    const page = this.state.page;
     return (
       <div id="ui">
         <header>
@@ -61,8 +94,22 @@ export default class UserInterface extends React.Component<Props, State> {
         <main>
           <nav id="global-navi">
             <ul>
-              <li><IconBtn glyph={Icon.glyph.Dashboard} /></li>
-              <li><IconBtn glyph={Icon.glyph.Note} /></li>
+              {
+                Object.keys(Pages).map(key => {
+                  const menuItem = Pages[key as keyof typeof Pages];
+                  const className = page === menuItem ? 'selected' : undefined;
+                  const id = this.globalNaviItemIDPrefix + menuItem.name;
+                  return (
+                    <li key={id}>
+                      <IconBtn
+                        glyph={menuItem.glyph}
+                        id={id}
+                        className={className}
+                        onClick={this.onClickGlobalMenuItem.bind(this)} />
+                    </li>
+                  );
+                })
+              }
             </ul>
           </nav>
 
@@ -77,3 +124,8 @@ export default class UserInterface extends React.Component<Props, State> {
     );
   }
 }
+
+const Pages = {
+  'Dashboard': { name: 'dashboard', glyph: Icon.glyph.Dashboard },
+  'Memo': { name: 'memo', glyph: Icon.glyph.Note },
+};

@@ -4,6 +4,9 @@ import Icon from "#/Components/Icon";
 type Props = {
   glyph: typeof Glyph[keyof typeof Glyph];
   label?: string;
+  id?: string;
+  className?: string;
+  onClick?: React.PointerEventHandler<HTMLButtonElement>;
 };
 type State = {};
 
@@ -23,13 +26,18 @@ export default class IconBtn extends React.Component<Props, State> {
   render() {
     const label = this.props.label;
     const glyph = this.props.glyph;
+    const onClick = this.props.onClick;
+
+    const id = this.props.id;
+    const className = (this.props.className || '') + ' icon-button';
+
     return label ? (
-      <button type="button" className="icon-button">
+      <button type="button" id={id} className={className} onClick={onClick}>
         <Icon glyph={glyph} />
         <label>{label}</label>
       </button>
     ) : (
-      <button type="button" className="icon-button">
+      <button type="button" id={id} className={className} onClick={onClick}>
         <Icon glyph={glyph} />
       </button>
     );

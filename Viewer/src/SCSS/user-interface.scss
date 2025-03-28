@@ -165,13 +165,19 @@ button.typeA {
     justify-content: center;
     align-items: center;
     flex-flow: row;
+    color: #cccccc;
     background-color: transparent;
-    color: inherit;
     border: none;
     transition: .15s ease-out background-color;
 
     &:hover {
+      color: #ffffff;
       background-color: #ffffff22;
+    }
+
+    &.selected {
+      color: black;
+      background-color: #ffffff;
     }
 
     svg.icon {
