@@ -1,7 +1,12 @@
 import React from "react";
+import Application from "#/Core/Application";
+import Icon from "#/Components/Icon";
+import IconBtn from "#/Components/IconBtn";
+import '#/SCSS/user-interface.scss';
+
 
 type Props = {
-  app: any;
+  app: Application;
 };
 type State = {};
 
@@ -20,8 +25,30 @@ export default class UserInterface extends React.Component<Props, State> {
   }
 
   render() {
+    const app = this.props.app;
     return (
-      <div>Hello world</div>
+      <div id="ui">
+        <header>
+          <div><h1>{app.title}</h1></div>
+          <div>
+            <IconBtn glyph={Icon.glyph.User} label={app.user.displayName} />
+            <IconBtn glyph={Icon.glyph.Gear} />
+          </div>
+        </header>
+
+        <main>
+          <nav id="global-navi">
+            <ul>
+              <li><IconBtn glyph={Icon.glyph.Dashboard} /></li>
+              <li><IconBtn glyph={Icon.glyph.Note} /></li>
+            </ul>
+          </nav>
+
+          <div id="content">content</div>
+        </main>
+
+        <footer><span>(c) Code-GN all rights received.</span></footer>
+      </div>
     );
   }
 }

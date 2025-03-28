@@ -3,7 +3,7 @@ import os
 from constant import SETTING_FILE_EXTENSIONS
 
 
-def path_of(*paths):
+def path_of(*paths) -> str:
     '''
     パスを結合する
     '''

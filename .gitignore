@@ -1,4 +1,5 @@
-node_modules
-Site
-venv
 __pycache__
+node_modules
+Site/css
+Site/js
+venv

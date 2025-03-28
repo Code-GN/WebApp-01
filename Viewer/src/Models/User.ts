@@ -21,7 +21,7 @@ export default class User {
   };
 
   static get dummy() {
-    return new User(-1, '', '');
+    return new User(-1, '', 'Nobody');
   }
 
   /**
