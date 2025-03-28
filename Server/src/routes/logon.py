@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends
 from fastapi.responses import Response, JSONResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from utils.data_util import sha256
+from database import UserTable
+from utils.auth_util import auth
 
 router = APIRouter()
 security = HTTPBasic()
@@ -15,13 +16,9 @@ async def logon(
     GET /logon
     ログイン認証を行う
     """
+    user: UserTable = auth(basic)
 
-    user_id = basic.username
-    user_pw = sha256(basic.password)
+    if user:
+        return JSONResponse({'User': user.to_dict()})
 
-    user_data = {
-        'UID': 123,
-        'UserID': 'abc',
-        'DisplayName': 'John Doe',
-    }
-    return JSONResponse({'User': user_data})
+    return Response('Unauthorized.', 401)

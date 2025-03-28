@@ -20,3 +20,35 @@ class DatabaseController:
         cls.Base.metadata.create_all(bind=engine)
 
         cls.is_ready = True
+
+    @classmethod
+    def session(cls, f, commit=False):
+        ''' DB操作用 デコレータ '''
+        def _wrap(*args, **kwargs):
+
+            # セッション作成
+            err = None
+            session = cls.create_session()
+
+            # 処理を開始
+            result = None
+            try:
+                result = f(*args, **kwargs, session=session)
+                if commit:
+                    session.commit()
+            except Exception as e:
+                err = e
+                session.rollback()
+            finally:
+                session.close()
+
+            # エラーを発生
+            if err:
+                raise err
+
+            return result
+        return _wrap
+
+    @classmethod
+    def create_session(cls) -> Session:
+        return scoped_session(sessionmaker(cls.engine))()
