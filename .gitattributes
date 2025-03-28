@@ -12,6 +12,8 @@
 *.css.map text eol=lf encoding=utf-8 diff=utf-8
 *.scss    text eol=lf encoding=utf-8 diff=utf-8
 *.js.map  text eol=lf encoding=utf-8 diff=utf-8
+*.txt     text eol=lf encoding=utf-8 diff=utf-8
+*.ini     text eol=lf encoding=utf-8 diff=utf-8
 
 # Data
 *.json    text eol=lf encoding=utf-8 diff=utf-8

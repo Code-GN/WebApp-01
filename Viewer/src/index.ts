@@ -5,8 +5,10 @@
  * このウェブアプリケーションのエントリーポイントです。
  */
 
+import Application from './Core/Application';
 import './global.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('Hello world!');
+  const app = new Application('#uiroot');
+  (window as any).app = app;
 });

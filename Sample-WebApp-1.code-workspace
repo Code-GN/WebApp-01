@@ -10,6 +10,7 @@
       "**/__pycache__": true,
       "**/node_modules": true,
       "**/venv": true,
+      "*.*": true,
     },
     "editor.tabSize": 2,
     "files.encoding": "utf8",

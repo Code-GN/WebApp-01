@@ -2,17 +2,28 @@ import os
 import sys
 from fastapi import FastAPI
 import uvicorn
-from constant import EXEC_DIR, ROOT_DIR
+from config import Config as Cnf
+from routes import ALL_ROUTERS
 
 
 def init():
-    os.chdir(ROOT_DIR)
-    sys.path.append(EXEC_DIR)
+    '''
+    初期化処理
+    '''
+    os.chdir(Cnf.ROOT_DIR)
+    sys.path.append(Cnf.EXEC_DIR)
 
 
 def main():
+    '''
+    実行
+    '''
     app = FastAPI()
-    uvicorn.run(app, host='localhost', port=2200)
+
+    for router in ALL_ROUTERS:
+        app.include_router(router)
+
+    uvicorn.run(app, host=Cnf.HOST, port=Cnf.PORT)
 
 
 if __name__ == "__main__":
