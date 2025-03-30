@@ -31,6 +31,7 @@ export default class Icon extends React.Component<Props, State> {
 }
 
 const Glyph = {
+  Chevron: 'chevron',
   Dashboard: 'dashboard',
   Gear: 'gear',
   Note: 'note',

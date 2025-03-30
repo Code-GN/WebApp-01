@@ -2,8 +2,9 @@ import React from "react";
 import Icon from "#/Components/Icon";
 
 type Props = {
-  glyph: typeof Glyph[keyof typeof Glyph];
+  glyph: typeof Icon.glyph[keyof typeof Icon.glyph];
   label?: string;
+  iconAlign?: 'Left' | 'Right';
   id?: string;
   className?: string;
   onClick?: React.PointerEventHandler<HTMLButtonElement>;
@@ -19,17 +20,19 @@ export default class IconBtn extends React.Component<Props, State> {
     this.state = {};
   }
 
-  static get glyph() {
-    return Glyph;
-  }
-
   render() {
     const label = this.props.label;
     const glyph = this.props.glyph;
     const onClick = this.props.onClick;
 
+    const align = this.props.iconAlign || 'Left';
+
     const id = this.props.id;
-    const className = (this.props.className || '') + ' icon-button';
+    const className = [
+      'icon-button',
+      this.props.className,
+      align === 'Right' ? 'icon-right' : undefined,
+    ].filter(item => !!item).join(' ');
 
     return label ? (
       <button type="button" id={id} className={className} onClick={onClick}>
@@ -43,10 +46,3 @@ export default class IconBtn extends React.Component<Props, State> {
     );
   }
 }
-
-const Glyph = {
-  Dashboard: 'dashboard',
-  Gear: 'gear',
-  Note: 'note',
-  User: 'user',
-};

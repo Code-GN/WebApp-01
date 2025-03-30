@@ -13,7 +13,11 @@ section,
 header,
 main,
 footer,
-nav {
+nav,
+input[type=text],
+input[type=password],
+input[type=button],
+button {
   box-sizing: border-box;
 }
 
@@ -22,4 +26,99 @@ body,
 #uiroot {
   width: 100%;
   height: 100%;
+}
+
+header,
+main,
+footer {
+  width: 100%;
+}
+
+textarea.typeA {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+input[type=text].typeA,
+input[type=password].typeA {
+  margin: .1em;
+  padding: .5em 1em;
+  font-size: .85rem;
+  font-family: inherit;
+  letter-spacing: .125em;
+  background-color: #00000010;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  outline: none;
+}
+
+button.typeA {
+  padding: .5em 1em;
+  font-size: .85rem;
+  font-family: inherit;
+  background-color: #00000010;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: .15s ease-out background-color, .15s ease-out border;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #00000020;
+    border: 1px solid #000000;
+  }
+
+  &.positive {
+    color: #ffffff;
+    background-color: #009f81;
+
+    &:hover {
+      background-color: #ffffff44;
+    }
+  }
+}
+
+svg.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button.icon-button {
+  padding: .5em 1em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row;
+  font-size: .9rem;
+  border-radius: 4px;
+  transition: .15s ease-out background-color;
+  cursor: pointer;
+
+  &>svg,
+  &>label {
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &.icon-right {
+    flex-flow: row-reverse;
+  }
+
+  &.positive {
+    color: #ffffff;
+    background-color: #009f81;
+    border: none;
+
+    &:hover {
+      background-color: #2ac5a9;
+    }
+  }
 }
